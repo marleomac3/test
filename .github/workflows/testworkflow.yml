@@ -16,7 +16,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: List GitHub Issues
-        run: gh issue list --label "github pages"
+      - name: List GitHub Issues and Write to File
+        run: |
+          TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+          LOG_ENTRY="$TIMESTAMP: gh issue list --label \"github pages\"" 
+          echo $LOG_ENTRY >> testtextfile.txt
+          cat testtextfile.txt
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
