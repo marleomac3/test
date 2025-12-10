@@ -1,0 +1,19 @@
+name: test-workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-job-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Step 1
+        run: echo "test step 1"
+    
+  test-job-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List Open Issues
+        run: gh issue list --open --limit 50
+        env: 
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
