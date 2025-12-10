@@ -21,7 +21,14 @@ jobs:
           TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
           GHP_ISSUES=$(gh issue list --label "github pages")
           LOG_ENTRY="$TIMESTAMP: $GHP_ISSUES" 
-          echo $LOG_ENTRY >> testtextfile.txt
-          cat testtextfile.txt
+          echo $LOG_ENTRY >> testlogfile.txt
+          cat testlogfile.txt
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Log File as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test_logs
+          path: testlogfile.txt
+          retention-days: 7
