@@ -19,7 +19,8 @@ jobs:
       - name: List GitHub Issues and Write to File
         run: |
           TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-          LOG_ENTRY="$TIMESTAMP: gh issue list --label \"github pages\"" 
+          GHP_ISSUES=$(gh issue list --label "github pages")
+          LOG_ENTRY="$TIMESTAMP: $GHP_ISSUES" 
           echo $LOG_ENTRY >> testtextfile.txt
           cat testtextfile.txt
         env:
