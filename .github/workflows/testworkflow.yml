@@ -18,8 +18,8 @@ jobs:
 
       - name: Authorize GH (GITHUB_TOKEN)
         env: 
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: echo "{{ secrets.GITHUB_TOKEN }}"
+          GH_TOKEN: ${{ github.token }}
+        run: echo "{{ github.token }}"
 
       - name: List Open Issues
         run: gh issue list --state open --limit 50
