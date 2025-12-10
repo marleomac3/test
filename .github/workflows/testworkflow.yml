@@ -16,10 +16,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Authorize GH (GITHUB_TOKEN)
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: echo "{{ secrets.GITHUB_TOKEN }}"
-
       - name: List Open Issues
         run: gh issue list --state open --limit 50
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
